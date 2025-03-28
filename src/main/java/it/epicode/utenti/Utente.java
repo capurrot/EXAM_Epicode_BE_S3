@@ -25,4 +25,10 @@ public class Utente {
     private String cognome;
 
     private LocalDate dataDiNascita;
+
+    public Utente(String nome, String cognome, LocalDate dataDiNascita) {
+        this.nome = nome;
+        this.cognome = cognome;
+        this.dataDiNascita = dataDiNascita;
+    }
 }

@@ -26,5 +26,17 @@ public class Libro extends ElementoBibliotecario {
         this.autore = autore;
         this.genere = genere;
     }
+
+    @Override
+    public String toString() {
+        return "Libro {" +
+                "ISBN=" + getCodiceIsbn() +
+                ", Titolo='" + getTitolo() + '\'' +
+                ", Anno di pubblicazione=" + getAnnoPubblicazione() +
+                ", Numero pagine=" + getNumeroPagine() +
+                ", Autore='" + autore + '\'' +
+                ", Genere='" + genere + '\'' +
+                '}';
+    }
 }
 

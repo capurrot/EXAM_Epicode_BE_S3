@@ -3,9 +3,13 @@ package it.epicode.archivio;
 import it.epicode.catalogo.Libro;
 import it.epicode.catalogo.Periodicita;
 import it.epicode.catalogo.Riviste;
+import it.epicode.utenti.Utente;
+import it.epicode.utenti.UtenteDao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+
+import java.time.LocalDate;
 
 public class MainCreaElementoBibliotecario {
     public static void main(String[] args) {
@@ -26,7 +30,13 @@ public class MainCreaElementoBibliotecario {
             Riviste r3 = new Riviste("National Geographic", 2023, 60, Periodicita.MENSILE);
             Riviste r4 = new Riviste("Vanity Fair", 2023, 40, Periodicita.SETTIMANALE);
 
+            Utente u1 = new Utente("Mario", "Rossi", LocalDate.of(1990, 1, 15));
+            Utente u2 = new Utente("Giuseppe", "Verdi", LocalDate.of(1995, 5, 20));
+            Utente u3 = new Utente("Luca", "Bianchi", LocalDate.of(1985, 8, 10));
+            Utente u4 = new Utente("Anna", "Neri", LocalDate.of(1992, 3, 25));
+
             ArchivioDao dao = new ArchivioDao(em);
+            UtenteDao udao = new UtenteDao(em);
 
             em.getTransaction().begin();
             dao.insert(l1);
@@ -37,6 +47,10 @@ public class MainCreaElementoBibliotecario {
             dao.insert(r2);
             dao.insert(r3);
             dao.insert(r4);
+            udao.insert(u1);
+            udao.insert(u2);
+            udao.insert(u3);
+            udao.insert(u4);
             em.getTransaction().commit();
 
             System.out.println("Elementi inseriti correttamente nel database.");

@@ -22,4 +22,15 @@ public class Riviste extends ElementoBibliotecario {
         super(titolo, annoPubblicazione, numeroPagine);
         this.periodicita = periodicita;
     }
+
+    @Override
+    public String toString() {
+        return "Rivista {" +
+                "ISBN=" + getCodiceIsbn() +
+                ", Titolo='" + getTitolo() + '\'' +
+                ", Anno di pubblicazione=" + getAnnoPubblicazione() +
+                ", Numero pagine=" + getNumeroPagine() +
+                ", Periodicità=" + periodicita +
+                '}';
+    }
 }
