@@ -38,9 +38,12 @@ public class ArchivioDao {
     }
 
     //ricerca per autore
-    public ElementoBibliotecario findByAutore (String autore) {
-        return em.find(ElementoBibliotecario.class, autore);
+    public List<ElementoBibliotecario> findByAutore(String autore) {
+        return em.createQuery("SELECT eb FROM ElementoBibliotecario eb WHERE eb.autore = :autore", ElementoBibliotecario.class)
+                .setParameter("autore", autore)
+                .getResultList();
     }
+
     //ricerca per titolo
     public ElementoBibliotecario findByTitolo (String titolo) {
         return em.find(ElementoBibliotecario.class, titolo);
