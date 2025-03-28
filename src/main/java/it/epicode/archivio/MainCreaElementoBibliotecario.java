@@ -14,7 +14,7 @@ public class MainCreaElementoBibliotecario {
         EntityManager em = emf.createEntityManager();
 
         Libro l1 = new Libro("Il Signore degli Anelli", 1954, 1000, "Tolkien", "Fantasy");
-        Libro l2= new Libro("Jack the Ripper", 2010, 500, "Wells", "Thriller");
+        Libro l2 = new Libro("Jack the Ripper", 2010, 500, "Wells", "Thriller");
         Libro l3 = new Libro("Harry Potter", 2001, 700, "Rowling", "Fantasy");
         Libro l4 = new Libro("Bosh", 2010, 500, "Wells", "Thriller");
         Riviste r1 = new Riviste("Focus", 2023, 50, Periodicita.MENSILE);
@@ -24,14 +24,14 @@ public class MainCreaElementoBibliotecario {
 
         ArchivioDao dao = new ArchivioDao(em);
         em.getTransaction().begin();
-         dao.insert(l1);
-         dao.insert(l2);
-         dao.insert(l3);
-         dao.insert(l4);
-         dao.insert(r1);
-         dao.insert(r2);
-         dao.insert(r3);
-         dao.insert(r4);
+        dao.insert(l1);
+        dao.insert(l2);
+        dao.insert(l3);
+        dao.insert(l4);
+        dao.insert(r1);
+        dao.insert(r2);
+        dao.insert(r3);
+        dao.insert(r4);
         em.getTransaction().commit();
     }
 }
