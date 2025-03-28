@@ -44,9 +44,12 @@ public class ArchivioDao {
                 .getResultList();
     }
 
-    //ricerca per titolo
-    public ElementoBibliotecario findByTitolo (String titolo) {
-        return em.find(ElementoBibliotecario.class, titolo);
+    //ricerca per titolo (imposto il Lower in modo da tornare tutti i titoli in minuscolo)
+    public List<ElementoBibliotecario> findByTitolo(String titoloParziale) {
+        return em.createQuery("SELECT eb FROM ElementoBibliotecario eb WHERE LOWER(eb.titolo) LIKE LOWER(:titolo)", ElementoBibliotecario.class)
+                .setParameter("titolo", "%" + titoloParziale + "%")
+                .getResultList();
     }
+
 
 }
