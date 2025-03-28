@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "elementi-bibliotecari")
+@Table(name = "elementibibliotecari")
 public abstract class ElementoBibliotecario {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

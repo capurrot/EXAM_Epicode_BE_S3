@@ -4,6 +4,8 @@ import it.epicode.catalogo.ElementoBibliotecario;
 import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 public class ArchivioDao {
     private EntityManager em;
@@ -20,12 +22,7 @@ public class ArchivioDao {
 
     public void delete(Long codiceIsbn) {
         ElementoBibliotecario eb = findByIsdn(codiceIsbn);
-        if (eb != null) {
             em.remove(eb);
-            System.out.println("Elemento con ISBN " + codiceIsbn + " eliminato correttamente");
-        } else {
-            System.out.println("Elemento non trovato");
-        }
     }
 
     //ricerca per ISBN
@@ -34,8 +31,19 @@ public class ArchivioDao {
     }
 
     //ricerca per anno di pubblicazione
-    public ElementoBibliotecario getByAnnoPubblicazione (int anno) {
-        return em.find(ElementoBibliotecario.class, anno);
+    public List<ElementoBibliotecario> findByAnnoPubblicazione(int annoPubblicazione) {
+        return em.createQuery("SELECT eb FROM ElementoBibliotecario eb WHERE eb.annoPubblicazione = :anno", ElementoBibliotecario.class)
+                .setParameter("anno", annoPubblicazione)
+                .getResultList();
+    }
+
+    //ricerca per autore
+    public ElementoBibliotecario findByAutore (String autore) {
+        return em.find(ElementoBibliotecario.class, autore);
+    }
+    //ricerca per titolo
+    public ElementoBibliotecario findByTitolo (String titolo) {
+        return em.find(ElementoBibliotecario.class, titolo);
     }
 
 }
