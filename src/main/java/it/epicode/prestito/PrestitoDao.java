@@ -32,5 +32,9 @@ public class PrestitoDao {
                 .getResultList();
     }
 
-
+    // metodo per cercare gli elementi con prestito scaduto
+    public List<ElementoBibliotecario> findElementiConPrestitoScaduto() {
+        return em.createQuery("SELECT p.elementoPrestato FROM GestionePrestito p WHERE p.dataRestituzioneEffettiva IS NULL AND p.dataRestituzionePrevista < CURRENT_DATE", ElementoBibliotecario.class)
+                .getResultList();
+    }
 }
