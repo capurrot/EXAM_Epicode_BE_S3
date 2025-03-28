@@ -8,44 +8,43 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table(name = "gestioneprestito")
 public class GestionePrestito {
 
     @Id
-    @GeneratedValue
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idPrestito;
 
     @ManyToOne
-    @JoinColumn(name = "utente_id", nullable = false)
+    @JoinColumn(name = "numerotessera", nullable = false)
     private Utente utente;
 
     @ManyToOne
-    @JoinColumn(name = "elemento_id", nullable = false)
+    @JoinColumn(name = "codiceisbn", nullable = false)
     private ElementoBibliotecario elementoPrestato;
 
+    @Column(nullable = false)
     private LocalDate dataInizioPrestito;
 
+    @Column(nullable = false)
     private LocalDate dataRestituzionePrevista;
 
+    @Column
     private LocalDate dataRestituzioneEffettiva;
 
-    private boolean restituito;
-
-    private boolean scaduto;
-
-    @PrePersist
-    public void calcolaDataRestituzionePrevista() {
-        if (dataInizioPrestito != null && dataRestituzionePrevista == null) {
-            this.dataRestituzionePrevista = dataInizioPrestito.plusDays(30);
-        }
+    // Costruttore comodo per nuovo prestito (non ancora restituito)
+    public GestionePrestito(Utente utente, ElementoBibliotecario elementoPrestato, LocalDate dataInizioPrestito, LocalDate dataRestituzioneEffettiva) {
+        this.utente = utente;
+        this.elementoPrestato = elementoPrestato;
+        this.dataInizioPrestito = dataInizioPrestito;
+        this.dataRestituzionePrevista = dataInizioPrestito.plusDays(30);
+        this.dataRestituzioneEffettiva = dataRestituzioneEffettiva;
     }
 }
-
-
 
 

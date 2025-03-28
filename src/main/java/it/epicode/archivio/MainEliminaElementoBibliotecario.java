@@ -1,11 +1,13 @@
 package it.epicode.archivio;
 
 import it.epicode.catalogo.ElementoBibliotecario;
+import it.epicode.prestito.PrestitoDao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.util.Scanner;
+
 
 public class MainEliminaElementoBibliotecario {
     public static void main(String[] args) {
@@ -16,9 +18,18 @@ public class MainEliminaElementoBibliotecario {
             long codiceIsbn = scanner.nextLong();
 
             ArchivioDao dao = new ArchivioDao(em);
+            PrestitoDao pdao = new PrestitoDao(em);
             ElementoBibliotecario eb = dao.findByIsdn(codiceIsbn);
 
             if (eb != null) {
+                // Recupero codice ISBN dell'elemento
+                long codiceIsbnElemento = eb.getCodiceIsbn();
+                // Verifica se l'elemento è in prestito
+                boolean inPrestito = pdao.isElementoInPrestito(codiceIsbnElemento);
+                if (inPrestito) {
+                    System.out.println("L'elemento è attualmente in prestito e non può essere eliminato.");
+                    return;
+                }
                 em.getTransaction().begin();
                 dao.delete(codiceIsbn);
                 em.getTransaction().commit();
