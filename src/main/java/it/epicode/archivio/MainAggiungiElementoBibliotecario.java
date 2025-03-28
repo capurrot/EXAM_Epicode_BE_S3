@@ -10,7 +10,6 @@ import it.epicode.utenti.UtenteDao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import org.hibernate.persister.entity.DeprecatedEntityStuff;
 
 import java.time.LocalDate;
 
@@ -49,7 +48,7 @@ public class MainAggiungiElementoBibliotecario {
             GestionePrestito p5 = new GestionePrestito(u1, l3, LocalDate.of(2023, 7, 20), LocalDate.of(2023, 8, 10));
             GestionePrestito p6 = new GestionePrestito(u5, r3, LocalDate.of(2023, 6, 15), null);
             GestionePrestito p7 = new GestionePrestito(u6, l4, LocalDate.of(2023, 5, 25), LocalDate.of(2023, 6, 20));
-            GestionePrestito p8 = new GestionePrestito(u7, r4, LocalDate.of(2023, 4, 30), null);
+            GestionePrestito p8 = new GestionePrestito(u7, r4, LocalDate.of(2025, 3, 15), null);
 
             ArchivioDao dao = new ArchivioDao(em);
             UtenteDao udao = new UtenteDao(em);

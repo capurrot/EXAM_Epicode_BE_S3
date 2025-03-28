@@ -1,0 +1,23 @@
+# Relazioni DiagrammaER
+
+1. **libri (codiceisbn) → elementibibliotecari (codiceisbn)**
+   - Ogni libro è un elemento bibliotecario.
+   - Relazione uno a uno: un codice ISBN identifica univocamente un libro e anche un elemento bibliotecario.
+
+2. **riviste (codiceisbn) → elementibibliotecari (codiceisbn)**
+   - Ogni rivista è un elemento bibliotecario.
+   - Relazione uno a uno: un codice ISBN identifica univocamente una rivista e anche un elemento bibliotecario.
+
+3. **elementibibliotecari (codiceisbn) → gestioneprestito (codiceisbn)**
+   - Ogni prestito si riferisce a un elemento bibliotecario.
+   - Relazione uno a molti: un elemento può essere prestato più volte.
+
+4. **utenti (numerotessera) → gestioneprestito (numerotessera)**
+   - Ogni prestito è associato a un utente.
+   - Relazione uno a molti: un utente può avere più prestiti.
+
+# Scelte progettuali
+
+- La tabella `elementibibliotecari` è una superclasse che permette di gestire sia libri che riviste attraverso l'uso condiviso del `codiceisbn`.
+- `libri` e `riviste` ereditano da `elementibibliotecari` aggiungendo attributi specifici.
+- La tabella `gestioneprestito` collega utenti ed elementi bibliotecari per tracciare i prestiti, includendo date importanti.
