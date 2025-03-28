@@ -1,7 +1,10 @@
 package it.epicode.prestito;
 
+import it.epicode.catalogo.ElementoBibliotecario;
 import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
+
+import java.util.List;
 
 @AllArgsConstructor
 public class PrestitoDao {
@@ -22,5 +25,12 @@ public class PrestitoDao {
 
         return count > 0;
     }
+
+    public List<ElementoBibliotecario> findByNumeroTessera(long numeroTessera) {
+        return em.createQuery("SELECT p.elementoPrestato FROM GestionePrestito p WHERE p.utente.numeroDiTessera = :numeroTessera AND p.dataRestituzioneEffettiva IS NULL", ElementoBibliotecario.class)
+                .setParameter("numeroTessera", numeroTessera)
+                .getResultList();
+    }
+
 
 }

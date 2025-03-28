@@ -50,6 +50,4 @@ public class ArchivioDao {
                 .setParameter("titolo", "%" + titoloParziale + "%")
                 .getResultList();
     }
-
-
 }

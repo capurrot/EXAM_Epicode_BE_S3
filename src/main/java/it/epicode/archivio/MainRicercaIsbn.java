@@ -17,7 +17,7 @@ public class MainRicercaIsbn {
             long codiceIsbn = scanner.nextLong();
 
             ArchivioDao dao = new ArchivioDao(em);
-            ElementoBibliotecario eb = dao.findByIsdn(codiceIsbn); // corretto qui
+            ElementoBibliotecario eb = dao.findByIsdn(codiceIsbn);
 
             if (eb != null) {
                 System.out.println("Elemento trovato: " + eb);
